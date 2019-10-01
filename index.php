@@ -55,6 +55,9 @@
 				<li class="mr-3">
 					<a class="inline-block text-gray-100 font-semibold no-underline hover:text-gray-800 hover:text-underline py-2 px-4 uppercase " href="#">Sign Up</a>
 				</li>
+				<li class="mr-3">
+					<a class="inline-block text-gray-100 font-semibold no-underline hover:text-gray-800 hover:text-underline py-2 px-4 uppercase " href="./admin/views/admin-dashboard.php">Admin</a>
+				</li>
 			</ul>
 		</div>
 	</div>
