@@ -4,12 +4,12 @@ session_start();
  
 // Check if the user is already logged in, if yes then redirect him to welcome page
 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-    header("location: ../../dashboard/dashboard.php");
+    header("Location: ../dashboard/dashboard.php");
     exit;
 }
  
 // Include config file
-require_once "../../db.php";
+require_once "../db.php";
  
 // Define variables and initialize with empty values
 $username = $password = "";
@@ -63,7 +63,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             $_SESSION["username"] = $username; 
                             
                             // Redirect user to welcome page
-                            header("location: ../../dashboard/dashboard.php");
+                            header("location: ../dashboard/dashboard.php");
                         } else{
                             // Display an error message if password is not valid
                             $password_err = "The password you entered was not valid.";

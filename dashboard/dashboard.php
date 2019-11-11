@@ -4,7 +4,7 @@ session_start();
  
 // Check if the user is logged in, if not then redirect him to login page
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
-    header("location: ../registration/views/login.php");
+    header("location: ../registration/login.php");
     exit;
 }
 ?>
@@ -14,10 +14,10 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Dashborad | Bunk Manager</title>
+<title>Dashboard | Bunk Manager</title>
 <link href="../assets/css/tailwind.min.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js" integrity="sha256-xKeoJ50pzbUGkpQxDYHD7o7hxe0LaOGeguUidbq6vis=" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="../assets/js/jquery.min.js"></script>
 </head>
 <body>
 	<nav class="flex items-center justify-between flex-wrap bg-teal-500 p-6">
@@ -93,17 +93,17 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 
 	  	  	const id = "<?php echo $i ?>";
 
-	  	  	var xmlhttp = new XMLHttpRequest();
-		    xmlhttp.onreadystatechange = function() {
-		        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) 
-		        {
-		            alert("Attendance updated succesfully!");
-		        }
-		    };
-		    xmlhttp.open("GET", "update.php?id=" +id +"&attended=1" , true);
-		    xmlhttp.send();
-
+	  	  	$.get({
+	            url: "update.php?id=" +id +"&attended=1",
+	            success: function (data) {
+	                alert("Attendance updated succesfully!");
+	            },
+	            error: function (error) {
+	                console.log(error);
+	            }
+	        });
 	  	});
+
 	  	$("#bunked<?php echo $i; ?>").click(function(){
 	  		c<?php echo $i; ?>.data.datasets[0].data[1]++;
 	  	  	c<?php echo $i; ?>.data.datasets[0].data[2]--;
@@ -111,23 +111,27 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 
 	  	  	const id = "<?php echo $i ?>";
 
-	  	  	var xmlhttp = new XMLHttpRequest();
-		    xmlhttp.onreadystatechange = function() {
-		        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) 
-		        {
-		            alert("Oops you bunked a lecture!");
-		        }
-		    };
-		    xmlhttp.open("GET", "update.php?id=" +id +"&attended=0" , true);
-		    xmlhttp.send();
-
+	  	  	$.get({
+	            url: "update.php?id=" +id +"&attended=0",
+	            success: function (data) {
+	                alert("Oops you bunked a lecture!");
+	            },
+	            error: function (error) {
+	                console.log(error);
+	            }
+	        });
 	  	});
+
 	  	</script>
 	  </div>
 	</div>
 	<?php
 		$i++;
 	}
+
+	// echo "<pre>";
+	// print_r($_SESSION);
+	// echo "</pre>";
 	?>
 	</div>
 	

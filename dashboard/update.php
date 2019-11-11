@@ -1,9 +1,15 @@
-<?php 
+<?php
+session_start();
+echo "<pre>";
+print_r($_GET);
+echo "</pre>"; 
 if(isset($_GET['id']) && isset($_GET['attended']) && !empty($_GET['id']))
 {
-    $userid = $_SESSION['userid'];
+    $userid = $_SESSION["userid"];
     $sid = $_GET['id'];
     include('../db.php');
+
+    $attended = $_GET['attended'];
 
     if ($attended==1)
     {
@@ -20,7 +26,6 @@ if(isset($_GET['id']) && isset($_GET['attended']) && !empty($_GET['id']))
     }
     if (mysqli_query($db, $update))
     {   
-        
         echo "Record updated successfully";
     } 
     else 
@@ -28,8 +33,4 @@ if(isset($_GET['id']) && isset($_GET['attended']) && !empty($_GET['id']))
         echo "Error updating record: " . mysqli_error($db);
     }
 }
-else{
-
-}
-    mysqli_close($db);
 ?>
