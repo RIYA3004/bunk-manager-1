@@ -1,5 +1,6 @@
 <?php
-    include_once '../../db.php';
+    include_once '../db.php';
+    $uid = ($_REQUEST['user']);
 ?>
 
 
@@ -55,7 +56,7 @@
                     </li>
                     <li class="flex-1 md:flex-none md:mr-3">
                         <div class="relative inline-block">
-                            <button onclick="toggleDD('myDropdown')" class="drop-button text-white focus:outline-none"> <span class="pr-2"><i class="em em-robot_face"></i></span> Hi, User <svg class="h-3 fill-current inline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg></button>
+                            <button onclick="toggleDD('myDropdown')" class="drop-button text-white focus:outline-none"> <span class="pr-2"><i class="em em-robot_face"></i></span> Hi, Admin <svg class="h-3 fill-current inline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg></button>
                             <div id="myDropdown" class="dropdownlist absolute bg-gray-900 text-white right-0 mt-3 p-3 overflow-auto z-30 invisible">
                                 <div class="border border-gray-800"></div>
                                 <a href="#" class="p-2 hover:bg-gray-800 text-white text-sm no-underline hover:no-underline block"><i class="fas fa-sign-out-alt fa-fw"></i> Log Out</a>
@@ -100,7 +101,7 @@
 
         <div class="main-content flex-1 bg-gray-100 mt-12 md:mt-2 pb-24 md:pb-5">
 
-            <div class="flex flex-wrap">
+             <div class="flex flex-wrap">
                 <div class="w-full md xl p-3">
                     <!--Metric Card-->
                     <div class="bg-yellow-100 border-b-4 border-yellow-600 rounded-lg shadow-lg p-5">
@@ -109,13 +110,14 @@
                                 <div class="rounded-full p-5 bg-yellow-600"><i class="fas fa-users fa-2x fa-inverse"></i></div>
                             </div>
                             <div class="flex-1 text-right md:text-center">
-                                <h5 class="font-bold uppercase text-gray-600">Total Users</h5>
                                 <?php
-                                        $sql = "SELECT COUNT(*) as user_count FROM users";
-                                        $res = mysqli_fetch_assoc(mysqli_query($db, $sql))['user_count'];
+                                        $sql = "SELECT fname,lname FROM users WHERE id =";
+                                        $sql .= $uid;
+                                        $fname = mysqli_fetch_assoc(mysqli_query($db, $sql))['fname'];
+                                        $lname = mysqli_fetch_assoc(mysqli_query($db, $sql))['lname'];
                                     ?>
                                 <h3 class="font-bold text-3xl">
-                                    <?php echo $res; ?>
+                                    <?php echo $fname; ?> <?php echo $lname; ?> 
                                     <span class="text-yellow-600"></span></h3>
                             </div>
                         </div>
@@ -124,16 +126,12 @@
                 </div>
             </div>
 
-
             <div class="flex flex-row flex-wrap flex-grow mt-2">
                 <?php 
-                    $sql = "SELECT * FROM users";
+                    $sql = "SELECT * FROM attendance WHERE uid =";
+                    $sql .= $uid;
                     $res = mysqli_query($db, $sql);
                     
-                    
-
-
-
 
                    // while($res){
                    //       echo $res['TABLE_NAME'];
@@ -144,39 +142,38 @@
             <table class="text-left w-full border-collapse"> <!--Border collapse doesn't work on this site yet but it's available in newer tailwind versions -->
               <thead>
                 <tr>
-                  <th class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">ID</th>
-                  <th class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">Username</th>
-                  <th class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">Name</th>
-                  <th class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">Action</th>
+                  <th class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">Subject</th>
+                  <th class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">Attended</th>
+                  <th class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">Bunked</th>
+                    <th class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">Attendance</th>
                 </tr>
               </thead>
               <tbody>
                 <?php 
                 
                 while($row = mysqli_fetch_assoc($res)){
-                    $id = $row['id'];
+                    $sid = $row['sid'];
+                    $subsql = "SELECT sname FROM subjects WHERE sid =";
+                    $subsql .= $sid;
+                    $sname = mysqli_fetch_assoc(mysqli_query($db, $subsql))['sname'];
                     $r = '<tr class="hover:bg-grey-lighter">
                         <td class="py-4 px-6 border-b border-grey-light">';
-                    $r .= $id;
-                    $name = $row['username'];
+                    $r .= $sname;
+                    $attended = $row['attended'];
                     $r .= '</td>
                         <td class="py-4 px-6 border-b border-grey-light">';
-                    $r .= $name; 
+                    $r .= $attended; 
                     $r .='</td>';
-                    $full_name = $row['fname'];
-                    $full_name .= " ";
-                    $full_name .= $row['lname'];
+                    $bunked = $row['bunked'];
                     $r .= '</td>
                         <td class="py-4 px-6 border-b border-grey-light">';
-                    $r .= $full_name; 
-                    $r .='</td>';
-                        $r .= '</td>
-                        <td class="py-4 px-6 border-b border-grey-light">
-                        <a href="attendance.php?user=';
-                    $r .= $id;
-                    $r .='" class="text-grey-lighter font-bold py-1 px-3 rounded text-xs bg-blue hover:bg-blue-dark">View</a>
-                        </td>
-                        </tr>';
+                    $r .= $bunked; 
+                    $perc = $bunked * 100/($bunked + $attended);
+                    $r .= '</td>
+                        <td class="py-4 px-6 border-b border-grey-light">';
+                    $r .= round($perc,2);
+                    $r .=' % </td></tr>';
+
                     echo $r;
                  }
                 ?>

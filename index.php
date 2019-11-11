@@ -50,13 +50,10 @@
 		<div class="w-full flex-grow lg:flex lg:items-center lg:w-auto hidden lg:block mt-2 lg:mt-0 bg-white lg:bg-transparent text-black p-4 lg:p-0 z-20" id="nav-content">
 			<ul class="list-reset lg:flex justify-end flex-1 items-center">
 				<li class="mr-3">
-					<a class="uppercase inline-block text-gray-100 no-underline hover:text-gray-800 hover:text-underline py-2 px-4 font-semibold" href="registration/login.php">Login</a>
+					<a class="uppercase inline-block text-gray-100 no-underline hover:text-white-800 hover:text-underline py-2 px-4 font-semibold" href="registration/login.php">Login</a>
 				</li>
 				<li class="mr-3">
-					<a class="inline-block text-gray-100 font-semibold no-underline hover:text-gray-800 hover:text-underline py-2 px-4 uppercase " href="#">Sign Up</a>
-				</li>
-				<li class="mr-3">
-					<a class="inline-block text-gray-100 font-semibold no-underline hover:text-gray-800 hover:text-underline py-2 px-4 uppercase " href="./admin/views/admin-dashboard.php">Admin</a>
+					<a class="inline-block text-gray-100 font-semibold no-underline hover:text-white-800 hover:text-underline py-2 px-4 uppercase " href="registration/register.php">Sign Up</a>
 				</li>
 			</ul>
 		</div>
@@ -76,8 +73,6 @@
 		<div class="flex flex-col w-full md:w-2/5 justify-center items-start text-center md:text-center">
 			<h1 class="my-4 text-5xl font-bold leading-tight">Bunk as many lectures as you can!</h1>
 			<p class="leading-normal text-2xl mb-8 mx-auto">Bunk Manager can help you with that!</p>
-
-			<button class=" bg-transparent mx-auto lg:mx-auto bg-white text-gray-800 font-bold rounded hover:underline my-6 py-4 px-8 shadow-lg justify-center items-center">Sign Up</button>
 			
 		</div>
 		<!--Right Col-->
@@ -141,30 +136,6 @@
 	</div>
 </section>
 
-
-
-<section class="container mx-auto text-center py-6 mb-12">
-
-	<h1 class="w-full my-2 text-5xl font-bold leading-tight text-center text-white">Sign up</h1>
-	<div class="w-full mb-4">	
-		<div class="h-1 mx-auto bg-white w-1/6 opacity-25 my-0 py-0 rounded-t"></div>
-	</div>
-
-	<h3 class="my-4 text-3xl leading-tight">Schedule your lectures as your wish!</h3>	
-
-	<button class="bg-transparent mx-auto lg:mx-0 bg-white text-gray-800 font-semibold my-6 py-4 px-8 shadow-md hover:border-transparent rounded-lg hover:underline">Sign Up</button>
-		
-</section>
-
-
-<!--Footer-->
-<footer class="bg-white">
-	<div class="container mx-auto px-8">
-        <div class="w-full flex flex-col md:flex-row py-6 justify-center">
-            <p class="uppercase text-xl text-gray-700 md:mb-6">Made with love for you!</p>
-        </div>
-    </div>
-</footer>
 
 
 
