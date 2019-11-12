@@ -78,38 +78,58 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     mysqli_close($db);
 }
 ?>
- 
+
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Login | Bunk Manager</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
-    <style type="text/css">
-        body{ font: 14px sans-serif; }
-        .wrapper{ width: 350px; padding: 20px; margin: 60px auto;}
-    </style>
-</head>
-<body>
-    <div class="wrapper">
-        <h2>Login</h2>
-        <p>Please fill in your credentials to login.</p>
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-            <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
-                <label>Username</label>
-                <input type="text" name="username" class="form-control" value="<?php echo $username; ?>">
-                <span class="help-block"><?php echo $username_err; ?></span>
-            </div>    
-            <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
-                <label>Password</label>
-                <input type="password" name="password" class="form-control">
-                <span class="help-block"><?php echo $password_err; ?></span>
+<html>
+    <head>
+        <title>Login | Bunk Manager</title>
+        <?php include_once '../includes/header.php'; ?>  
+    </head>
+    
+
+    <body class="animsition">
+        <div class="page-wrapper">
+            <div class="page-content--bge5">
+                <div class="container">
+                    <div class="login-wrap">
+                        <div class="login-content">
+                            <div class="login-logo">
+                                <h3>Bunk Manager</h3>
+                            </div>
+                            <div class="login-form">
+                                
+                                <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                                    
+                                    <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
+                                        <label>Username</label>
+                                        <input type="text" name="username" class="au-input au-input--full" value="<?php echo $username; ?>">
+                                        <span class="help-block"><?php echo $username_err; ?></span>
+                                    </div>  
+
+                                    <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
+                                        <label>Password</label>
+                                        <input type="password" name="password" class="au-input au-input--full">
+                                        <span class="help-block"><?php echo $password_err; ?></span>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <input type="submit" class="au-btn au-btn--block au-btn--green m-b-20" value="Login">
+                                    </div>
+                                </form>
+
+                                <div class="register-link">
+                                    <p>
+                                        Don't you have account?
+                                        <a href="register.php">Sign Up Here</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <input type="submit" class="btn btn-primary" value="Login">
-            </div>
-            <p>Don't have an account? <a href="register.php">Sign up now</a>.</p>
-        </form>
-    </div>    
-</body>
+        </div>
+
+        <?php include_once '../includes/scripts.php'; ?>
+    </body>
 </html>
