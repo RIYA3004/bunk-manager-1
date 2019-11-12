@@ -107,7 +107,7 @@
 													          datasets: [
 													            {
 													              label: "Stats",
-													              data: [<?php echo $attended; ?>,<?php echo $bunked; ?>, <?php echo $row['total_lecs']; ?>],
+													              data: [<?php echo $attended; ?>,<?php echo $bunked; ?>, <?php echo $row['total_lecs']?>-<?php echo ($bunked+$attended);?>],
 													              backgroundColor: ["green", "red", "rgb(255, 205, 86)"],
 													              hoverBackgroundColor: [
 													                'green',

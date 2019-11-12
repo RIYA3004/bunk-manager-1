@@ -70,7 +70,7 @@
                             <div class="flex-1 text-right md:text-center">
                                 <h5 class="font-bold uppercase text-gray-600">Total Users</h5>
                                 <?php
-                                        $sql = "SELECT COUNT(*) as user_count FROM users";
+                                        $sql = "SELECT COUNT(*) as user_count FROM users WHERE is_admin=0";
                                         $res = mysqli_fetch_assoc(mysqli_query($db, $sql))['user_count'];
                                     ?>
                                 <h3 class="font-bold text-3xl">
@@ -86,7 +86,7 @@
 
             <div class="flex flex-row flex-wrap flex-grow mt-2">
                 <?php 
-                    $sql = "SELECT * FROM users";
+                    $sql = "SELECT * FROM users WHERE is_admin=0";
                     $res = mysqli_query($db, $sql);
                     
                     
