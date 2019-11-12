@@ -2,10 +2,10 @@
 -- version 4.9.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Nov 11, 2019 at 04:33 PM
+-- Host: localhost
+-- Generation Time: Nov 12, 2019 at 08:01 AM
 -- Server version: 10.4.8-MariaDB
--- PHP Version: 7.3.10
+-- PHP Version: 7.3.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -31,8 +31,8 @@ SET time_zone = "+00:00";
 CREATE TABLE `attendance` (
   `uid` int(11) NOT NULL,
   `sid` int(11) NOT NULL,
-  `attended` int(11) NOT NULL,
-  `bunked` int(11) NOT NULL
+  `attended` int(11) NOT NULL DEFAULT 0,
+  `bunked` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -43,8 +43,8 @@ INSERT INTO `attendance` (`uid`, `sid`, `attended`, `bunked`) VALUES
 (1, 1, 25, 12),
 (1, 2, 20, 9),
 (1, 3, 17, 6),
-(2, 1, 30, 11),
-(2, 2, 9, 16),
+(2, 1, 36, 14),
+(2, 2, 12, 19),
 (2, 3, 22, 11);
 
 -- --------------------------------------------------------
@@ -79,16 +79,18 @@ CREATE TABLE `users` (
   `username` varchar(25) NOT NULL,
   `password` varchar(255) NOT NULL,
   `fname` varchar(25) NOT NULL,
-  `lname` varchar(25) NOT NULL
+  `lname` varchar(25) NOT NULL,
+  `is_admin` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `password`, `fname`, `lname`) VALUES
-(1, 'harmanshal', 'balbasor', 'Harshal', 'Mandlekar'),
-(2, 'nachiketbhuta', 'balbasor', 'Nachiket', 'Bhuta');
+INSERT INTO `users` (`id`, `username`, `password`, `fname`, `lname`, `is_admin`) VALUES
+(1, 'harmanshal', '2b323f9008ed771765cd2259d860baec', 'Harshal', 'Mandlekar', 0),
+(2, 'nachiketbhuta', '2b323f9008ed771765cd2259d860baec', 'Nachiket', 'Bhuta', 0),
+(6, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'admin', 'admin', 1);
 
 --
 -- Indexes for dumped tables
@@ -127,7 +129,7 @@ ALTER TABLE `subjects`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Constraints for dumped tables
