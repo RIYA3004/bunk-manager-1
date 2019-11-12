@@ -16,8 +16,10 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Dashboard | Bunk Manager</title>
 <link href="../assets/css/tailwind.min.css" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/jquery.toast.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js" integrity="sha256-xKeoJ50pzbUGkpQxDYHD7o7hxe0LaOGeguUidbq6vis=" crossorigin="anonymous"></script>
 <script src="../assets/js/jquery.min.js"></script>
+<script src="../assets/js/jquery.toast.min.js"></script>
 </head>
 <body>
 	<nav class="flex items-center justify-between flex-wrap bg-teal-500 p-6">
@@ -96,7 +98,13 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 	  	  	$.get({
 	            url: "update.php?id=" +id +"&attended=1",
 	            success: function (data) {
-	                alert("Attendance updated succesfully!");
+	                $.toast({
+					    heading: 'Success',
+					    text: 'Attendance updated successfully',
+					    icon: 'success',
+					    position : 'bottom-right',
+					    stack: 5
+					});
 	            },
 	            error: function (error) {
 	                console.log(error);
@@ -114,7 +122,13 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 	  	  	$.get({
 	            url: "update.php?id=" +id +"&attended=0",
 	            success: function (data) {
-	                alert("Oops you bunked a lecture!");
+	                $.toast({ 
+						text : "Oops you bunked a lecture!", 
+						heading: 'Error',
+						icon: 'error',
+						position : 'bottom-right',
+						stack: 5
+					});
 	            },
 	            error: function (error) {
 	                console.log(error);
