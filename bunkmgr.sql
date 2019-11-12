@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 12, 2019 at 08:01 AM
+-- Generation Time: Nov 12, 2019 at 03:52 PM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.11
 
@@ -43,7 +43,7 @@ INSERT INTO `attendance` (`uid`, `sid`, `attended`, `bunked`) VALUES
 (1, 1, 25, 12),
 (1, 2, 20, 9),
 (1, 3, 17, 6),
-(2, 1, 36, 14),
+(2, 1, 10, 34),
 (2, 2, 12, 19),
 (2, 3, 22, 11);
 
@@ -55,7 +55,7 @@ INSERT INTO `attendance` (`uid`, `sid`, `attended`, `bunked`) VALUES
 
 CREATE TABLE `subjects` (
   `sid` int(11) NOT NULL,
-  `sname` varchar(25) NOT NULL,
+  `sname` varchar(255) NOT NULL,
   `total_lecs` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -64,9 +64,9 @@ CREATE TABLE `subjects` (
 --
 
 INSERT INTO `subjects` (`sid`, `sname`, `total_lecs`) VALUES
-(1, 'AD', 75),
-(2, 'CG', 56),
-(3, 'ITC', 48);
+(1, 'Advanced Database', 75),
+(2, 'Computer Graphics', 56),
+(3, 'Information Theory and Coding', 48);
 
 -- --------------------------------------------------------
 
@@ -80,17 +80,18 @@ CREATE TABLE `users` (
   `password` varchar(255) NOT NULL,
   `fname` varchar(25) NOT NULL,
   `lname` varchar(25) NOT NULL,
-  `is_admin` tinyint(1) NOT NULL DEFAULT 0
+  `is_admin` tinyint(1) NOT NULL DEFAULT 0,
+  `email` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `password`, `fname`, `lname`, `is_admin`) VALUES
-(1, 'harmanshal', '2b323f9008ed771765cd2259d860baec', 'Harshal', 'Mandlekar', 0),
-(2, 'nachiketbhuta', '2b323f9008ed771765cd2259d860baec', 'Nachiket', 'Bhuta', 0),
-(6, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'admin', 'admin', 1);
+INSERT INTO `users` (`id`, `username`, `password`, `fname`, `lname`, `is_admin`, `email`) VALUES
+(1, 'harmanshal', '2b323f9008ed771765cd2259d860baec', 'Harshal', 'Mandlekar', 0, 'harshal.pm@somaiya.edu'),
+(2, 'nachiketbhuta', '2b323f9008ed771765cd2259d860baec', 'Nachiket', 'Bhuta', 0, 'nachiket.bhuta@somaiya.edu'),
+(6, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'admin', 'admin', 1, 'admin@admin.com');
 
 --
 -- Indexes for dumped tables
@@ -129,7 +130,7 @@ ALTER TABLE `subjects`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Constraints for dumped tables
