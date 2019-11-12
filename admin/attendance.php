@@ -120,7 +120,6 @@
               </thead>
               <tbody>
                 <?php 
-                
                 while($row = mysqli_fetch_assoc($res)){
                     $sid = $row['sid'];
                     $subsql = "SELECT sname FROM subjects WHERE sid =";
