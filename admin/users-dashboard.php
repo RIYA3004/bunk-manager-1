@@ -88,10 +88,6 @@
                 <?php 
                     $sql = "SELECT * FROM users WHERE is_admin=0";
                     $res = mysqli_query($db, $sql);
-                    
-                    
-
-
 
 
                    // while($res){

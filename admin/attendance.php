@@ -2,13 +2,15 @@
     include_once '../db.php';
     $uid = ($_REQUEST['user']);
 
-    $sql = "SELECT email FROM users WHERE id = '$uid'";
+    $sql = "SELECT * FROM users WHERE id = '$uid'";
     $res = mysqli_query($db, $sql);
 
-    $email = "";
+
+    $email = $username = "";
 
     while($row = mysqli_fetch_assoc($res)) {
         $email = $row['email'];
+        $username .= $row['fname']." ".$row['lname'];
     }
 
 ?>
@@ -116,6 +118,8 @@
                   <th class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">Attended</th>
                   <th class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">Bunked</th>
                     <th class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">Attendance</th>
+                    <th class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">Action</th>
+
                 </tr>
               </thead>
               <tbody>
@@ -135,7 +139,7 @@
                     $r .='</td>';
                     $bunked = $row['bunked'];
                     $r .= '</td>
-                        <td class="py-4 px-6 border-b border-grey-light">';
+                        <td class="py-4 px-6 border-b bordesr-grey-light">';
                     $r .= $bunked; 
                     $perc = $bunked * 100/($bunked + $attended);
                     $r .= '</td>
@@ -145,8 +149,14 @@
 
                     $attendance = round($perc, 2);
 
-                    $r .= '<td class="py-4 px-6 border-b border-grey-light">"';
-                    $r .= "<a href='../sendmail.php?email='".$email."'&attendance='".$attendance."'>Send Mail </a>";
+                    $r .= '<td class="py-4 px-6 border-b border-grey-light">';
+                    $r .= '<a class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full" href="../sendmail.php?email=';
+                    $r .= $email;
+                    $r .= '&attendance=';
+                    $r .= $attendance;
+                    $r .= '&username=';
+                    $r .= $username;
+                    $r .= '">Send Mail </a>';
                     $r .=' </td>';
 
                     $r .= "</tr>";
