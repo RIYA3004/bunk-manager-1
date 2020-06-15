@@ -3,7 +3,7 @@
 #### Instructions for development of the project 
 1. Clone this repository
 2. Install [Composer (Package Manager of PHP)](https://getcomposer.org/download/) on your PC
-3. Install [Node.js)](https://www.nodejs.org) on your PC
+3. Install [Node.js](https://www.nodejs.org) on your PC
 4. Run ``composer require`` in the project directory to get all the PHP packages.
 5. Run ``npm install`` in the project directory to get all the NPM packages.
 6. Copy ``.env-example`` and rename it to ``.env``.
