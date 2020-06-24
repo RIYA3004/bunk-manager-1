@@ -81,7 +81,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    bunkmanager
                 </div>
 
                 <div class="links">
