@@ -81,7 +81,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    bunkmanager
+                    Bunk Manager
                 </div>
 
                 <div class="links">
